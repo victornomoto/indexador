@@ -41,8 +41,8 @@ def init():
     """)
 
     # cria usuário admin inicial se não existir
-    admin_username = "victor.nomoto"
-    admin_password = "joao1254"  # senha do admin (será hasheada)
+    admin_username = "Admin"
+    admin_password = "Admin456"  # senha do admin (será hasheada)
     cur.execute("SELECT id FROM usuarios WHERE username=%s", (admin_username,))
     exists = cur.fetchone()
     if not exists:
