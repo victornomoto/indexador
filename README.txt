@@ -20,7 +20,7 @@ INSTRUÇÕES RÁPIDAS - Indexador PDF (Windows)
 
    d) Inicializar banco e criar admin:
       python init_db.py
-      (vai criar database indexador_db e usuário admin: victor.nomoto / joao1254)
+      (vai criar database indexador_db e usuário admin: admin / Admin456)
 
    e) Rodar o sistema:
       python app.py
