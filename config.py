@@ -2,10 +2,11 @@
 DB_HOST = "localhost"
 DB_NAME = "indexador_db"
 DB_USER = "root"
-DB_PASSWORD = "Joao1254!"   # sua senha do MySQL root
+DB_PASSWORD = "Admin456"   # sua senha do MySQL root
 
 # Pasta onde estão os PDFs (compartilhamento de rede)
-PDF_FOLDER = r"\\192.168.0.78\Usuarios\SKYBOX"
+PDF_FOLDER = r"\\192.168.0.xx\Usuarios\"
+Alterar conforme o caminho dos arquivos
 
 # Pasta onde os arquivos exportados serão gravados (crie essa pasta)
 EXPORT_FOLDER = r"C:\indexador\exports"
