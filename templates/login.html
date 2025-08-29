@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login - Indexador</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+<!-- Favicon PNG -->
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+
+
+</head>
+<body>
+<div class="login-box">
+  <div class="login-header">
+    <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo">
+    <h2>VoltByte - Login</h2>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="messages">
+        {% for cat, msg in messages %}
+          <li class="{{ cat }}">{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <input type="text" name="username" placeholder="Usuário" required>
+    <input type="password" name="password" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+
+
+<p><a href="{{ url_for('reset_password') }}">Esqueceu a senha?</a></p>
+  </div>
+  <div class="footer">
+    Desenvolvido por "VoltByte"
+  </div>
+</body>
+</html>

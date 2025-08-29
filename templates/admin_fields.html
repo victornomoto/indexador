@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin - Campos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo"> Admin Campos
+    <h2></h2>
+    <a href="{{ url_for('dashboard') }}">Home</a>
+    <a href="{{ url_for('admin_campos') }}" class="active">Admin - Campos</a>
+    <a href="{{ url_for('admin_usuarios') }}">Admin - Usuários</a>
+    <a href="{{ url_for('exportar_txt') }}">Exportar TXT</a>
+    <a href="{{ url_for('exportar_excel') }}">Exportar Excel</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="main-content">
+    <h2>Administração de Campos</h2>
+
+    <div class="box">
+      <form method="POST">
+        <label for="nome_campo">Nome do campo:</label>
+        <input type="text" id="nome_campo" name="nome_campo" placeholder="Nome do campo" required>
+
+        <label for="ordem">Ordem:</label>
+        <input type="number" id="ordem" name="ordem" placeholder="Ordem (ex: 1, 2, 3)" required>
+
+        <button type="submit">Adicionar</button>
+      </form>
+
+      <hr>
+
+      <h3>Campos existentes</h3>
+      <ul>
+        {% for campo in campos %}
+          <li style="display: flex; justify-content: space-between; align-items: center; max-width: 400px; margin-bottom: 8px;">
+            <span>{{ campo.ordem }} — {{ campo.nome_campo }}</span>
+            <form action="/campos/delete/{{ campo.id }}" method="POST" style="margin:0;">
+              <button type="submit" class="delete-btn" onclick="return confirm('Quer mesmo excluir?');">Excluir</button>
+            </form>
+          </li>
+        {% else %}
+          <li>Nenhum campo cadastrado.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

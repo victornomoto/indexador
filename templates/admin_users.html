@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin - Usuários</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_users.css') }}">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+</head>
+<body>
+  <div class="layout">
+
+    <div class="sidebar">
+      <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo"> Admin Users
+
+      <h2></h2>
+      <a href="{{ url_for('dashboard') }}">Home</a>
+      <a href="{{ url_for('admin_campos') }}">Admin - Campos</a>
+      <a href="{{ url_for('admin_usuarios') }}" class="active">Admin - Usuários</a>
+      <a href="{{ url_for('exportar_txt') }}">Exportar TXT</a>
+      <a href="{{ url_for('exportar_excel') }}">Exportar Excel</a>
+      <a href="{{ url_for('logout') }}">Sair</a>
+    </div>
+
+    <div class="main-content">
+      <h2>Administração de Usuários</h2>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="messages">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      <div class="box">
+        <form method="POST" autocomplete="off">
+          <label for="username">Usuário:</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" required>
+
+          <label for="role">Permissão:</label>
+          <select id="role" name="role">
+            <option value="admin">Administrador</option>
+            <option value="user">Usuário</option>
+          </select>
+
+          <button type="submit">Criar Usuário</button>
+        </form>
+
+        <hr>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Email</th>
+              <th>Permissão</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for u in usuarios %}
+            <tr>
+              <td>{{ u.username }}</td>
+              <td>{{ u.email }}</td>
+              <td>{{ u.role }}</td>
+              <td>
+                <form action="{{ url_for('admin_delete_usuario', usuario_id=u.id) }}" method="POST" style="display:inline" onsubmit="return confirm('Quer mesmo excluir o usuário {{ u.username }}?');">
+                  <button type="submit" class="delete-btn">Excluir</button>
+                </form>
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="4" style="text-align:center;">Nenhum usuário cadastrado.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Flask>=2.2
+flask-mysqldb
+pandas
+openpyxl
+mysql-connector-python
+waitress
+Werkzeug

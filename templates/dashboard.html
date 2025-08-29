@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard - Indexador</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+              <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo"> Dashboard
+<h2>
+  
+</h2>
+    <a href="{{ url_for('dashboard') }}">Home</a>
+    {% if session.role == 'admin' %}
+      <a href="{{ url_for('admin_campos') }}">Admin - Campos</a>
+      <a href="{{ url_for('admin_usuarios') }}">Admin - Usuários</a>
+    {% endif %}
+    <a href="{{ url_for('exportar_txt') }}">Exportar TXT</a>
+    <a href="{{ url_for('exportar_excel') }}">Exportar Excel</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+    <h3>Pastas para indexação</h3>
+
+    {% if pastas %}
+      <ul>
+        {% for pasta in pastas %}
+          <li>
+            {% if pasta in bloqueios and bloqueios[pasta] != user_id %}
+              {{ pasta }} <span style="color:red;">(Bloqueada)</span>
+            {% else %}
+              <a href="{{ url_for('abrir_pasta', nome_pasta=pasta) }}">{{ pasta }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhuma pasta encontrada.</p>
+    {% endif %}
+
+   {% if pdfs %}
+  <h4>PDFs na pasta {{ pasta_selecionada }}</h4>
+  <ul>
+    {% for pdf in pdfs %}
+      <li>
+        <a href="{{ url_for('serve_pdf', filename=pasta_selecionada + '/' + pdf) }}" target="_blank">{{ pdf }}</a>
+        <a href="{{ url_for('indexar', pasta=pasta_selecionada, pdf=pdf) }}">[Indexar]</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('liberar_pasta', nome_pasta=pasta_selecionada) }}">Liberar Pasta</a>
+{% endif %}
+
+  </div>
+</div>
+</body>
+</html>

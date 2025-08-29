@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Indexar - {{ pdf }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo">Indexar
+    <h2>
+    </h2>
+    <a href="{{ url_for('dashboard') }}">Home</a>
+    {% if session.role == 'admin' %}
+      <a href="{{ url_for('admin_campos') }}">Admin - Campos</a>
+      <a href="{{ url_for('admin_usuarios') }}">Admin - Usuários</a>
+    {% endif %}
+    <a href="{{ url_for('exportar_txt') }}">Exportar TXT</a>
+    <a href="{{ url_for('exportar_excel') }}">Exportar Excel</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="main-content">
+    <h2>Indexar: {{ pdf }}</h2>
+    <div class="container">
+      
+      <!-- PDF -->
+      <div class="left">
+        <h4>Visualizar PDF</h4>
+      <embed src="{{ pdf_url }}" type="application/pdf" width="100%" height="600px" />
+
+      </div>
+
+      <!-- Formulário -->
+      <div class="right">
+        <form method="POST" autocomplete="off">
+          {% for campo in campos %}
+            <label for="field_{{ campo.id }}">{{ campo.nome_campo }}</label>
+            <input type="text" id="field_{{ campo.id }}" name="field_{{ campo.id }}">
+          {% endfor %}
+          <input type="hidden" name="pdf_name" value="{{ pdf }}">
+          <button type="submit">Salvar Indexação</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redefinir Senha</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+</head>
+<body>
+  <div class="box">
+    <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo"> Redefinir senha
+    <h2>Redefinir Senha</h2>
+    <form method="POST">
+      <input type="password" name="password" placeholder="Nova senha" required>
+      <input type="password" name="password_confirm" placeholder="Confirme a nova senha" required>
+      <button type="submit">Atualizar Senha</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Arquivos TXT Exportados</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logoverde.png') }}">
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="{{ url_for('static', filename='logoverde.png') }}" alt="Logo" class="login-logo"> Lista Txt
+    <h2></h2>
+    <a href="{{ url_for('dashboard') }}">Home</a>
+    <a href="{{ url_for('admin_campos') }}">Admin - Campos</a>
+    <a href="{{ url_for('admin_usuarios') }}">Admin - Usuários</a>
+    <a href="{{ url_for('exportar_txt') }}" class="active">Exportar TXT</a>
+    <a href="{{ url_for('exportar_excel') }}">Exportar Excel</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="main-content">
+    <h2>Arquivos TXT Exportados</h2>
+
+    <a href="{{ url_for('baixar_zip_txt') }}">
+      <button>Baixar todos os arquivos TXT em ZIP</button>
+    </a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="messages">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if arquivos %}
+      <ul>
+        {% for arquivo in arquivos %}
+          <li><a href="{{ url_for('download_txt', nome_arquivo=arquivo) }}">{{ arquivo }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhum arquivo TXT exportado encontrado.</p>
+    {% endif %}
+  </div>
+
+</div>
+</body>
+</html>

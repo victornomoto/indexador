@@ -1,0 +1,83 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #505050, #252727);
+  font-family: Arial, sans-serif;
+}
+
+.login-box {
+  background: #3a3838;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 253, 97, 0.986);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.login-box input {
+  width: 95%;
+  padding: 10px;
+  margin: 8px 0;
+  border:none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #029e17;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background: #0056b3;
+}
+
+/*footer nome que fica em baixo do box */
+
+.footer {
+  margin-top: 10px;
+  font-size: 14px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 255, 64, 0.3);
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* Espaço entre a logo e o título */
+  margin-bottom: 20px;
+}
+
+.login-logo {
+  width: 125px; /* Ajuste o tamanho da logo */
+  height: auto;
+}
+
+ /* ajustar tamanho e cor do "esqueceu senha" */
+
+.login-box a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.login-box a:hover {
+  color: #96979e;
+  text-decoration: underline;
+}
+
