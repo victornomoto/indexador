@@ -24,10 +24,10 @@ def send_password_reset_email(to_email, token):
     msg['To'] = to_email
 
     # Configurar seu servidor SMTP
-    smtp_server = 'mail.villetec.com'
+    smtp_server = ''
     smtp_port = 587
-    smtp_user = 'victor.nomoto@villetec.com'
-    smtp_pass = 'Joao1254!'
+    smtp_user = ''
+    smtp_pass = ''
 
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
